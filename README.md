@@ -20,4 +20,4 @@
 
 Код генерации кластеров представлен в данном [файле](Cluster_generation.ipynb)  
 
-Разведочный анализ представлень [здесь](Exploratory analysis.md)
+Разведочный анализ представлень [здесь](Exploratory_analysis.md)
