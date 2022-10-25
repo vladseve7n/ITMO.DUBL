@@ -35,3 +35,5 @@ tqdm==4.64.1
 webencodings==0.5.1
 Werkzeug==2.2.2
 wrapt==1.14.1
+nltk==3.7
+gensim==4.2.0
