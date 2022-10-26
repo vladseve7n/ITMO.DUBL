@@ -16,6 +16,9 @@ implementations = {
 
 
 def main(implemntation: str = 'USE'):
+
+    print('Загружаем данные...')
+
     train_ds = pd.read_csv(train_ds_url).drop('pair_id', axis=1)
 
     clusters = requests.get(cluster_url).json()['clusters']
@@ -32,6 +35,7 @@ def main(implemntation: str = 'USE'):
         cluster_embedding[num]['cluster'] = cluster
         embed_cluster = np.mean(np.array([embeddings_dict[x] for x in cluster]), axis=0)
         cluster_embedding[num]['embedding'] = embed_cluster
+
     while True:
         name_of_company = input('Введите название компании для поиска кластера:\n')
         if name_of_company.lower() == 'cancel':

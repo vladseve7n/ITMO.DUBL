@@ -11,7 +11,7 @@ class USE:
         return self.embed([x])[0].numpy()
 
     def find_closest_cluster(self, cluster_embedding: dict, name_of_company: str, distance: str = 'l1',
-                             thrsh: float = 0.9):
+                             thrsh: float = None):
         name_embedding = self(name_of_company)
         min_distance = 10e12
         result_cluster = None
@@ -26,6 +26,8 @@ class USE:
                 min_distance = distance
                 result_cluster = cluster
 
-        if min_distance > thrsh:
-            return None, None
+        if thrsh is not None:
+            if min_distance > thrsh:
+                return None, None
+
         return result_cluster, min_distance
