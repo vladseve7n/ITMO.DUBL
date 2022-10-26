@@ -19,11 +19,11 @@ class USE:
             cluster = cluster_embedding[key]['cluster']
             cluster_embed = cluster_embedding[key]['embedding']
             if distance == 'l1':
-                distance = np.abs(cluster_embed - name_embedding).sum()
+                distnc = np.abs(cluster_embed - name_embedding).sum()
             else:
-                distance = (((cluster_embed - name_embedding) ** 2).sum()) ** (1 / 2)
-            if distance < min_distance:
-                min_distance = distance
+                distnc = (((cluster_embed - name_embedding) ** 2).sum()) ** (1 / 2)
+            if distnc < min_distance:
+                min_distance = distnc
                 result_cluster = cluster
 
         if thrsh is not None:
