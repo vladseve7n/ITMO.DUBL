@@ -15,6 +15,7 @@ class USE:
         name_embedding = self(name_of_company)
         min_distance = 10e12
         result_cluster = None
+        num_of_cluster = None
         for key in cluster_embedding:
             cluster = cluster_embedding[key]['cluster']
             cluster_embed = cluster_embedding[key]['embedding']
@@ -25,9 +26,10 @@ class USE:
             if distnc < min_distance:
                 min_distance = distnc
                 result_cluster = cluster
+                num_of_cluster = key
 
         if thrsh is not None:
             if min_distance > thrsh:
-                return None, None
+                return None, None, None
 
-        return result_cluster, min_distance
+        return result_cluster, min_distance, num_of_cluster
