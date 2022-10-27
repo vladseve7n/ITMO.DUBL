@@ -52,13 +52,13 @@ def main(implemntation: str = 'USE', preprocess: str = 'lower_clean', mean_type:
 
     # Далее по запросу сравниваем embedding полученного слова с embedding'ами кластеров
     while True:
-        name_of_company = input('Введите название компании для поиска кластера:\n')
+        name_of_company = preprocess_fn(preprocess, input('Введите название компании для поиска кластера:\n'))
 
         if name_of_company.lower() == 'cancel':
             exit(0)
         t.start('res_spd')
         res_clus, min_distance, num_of_cluster = embed.find_closest_cluster(cluster_embedding,
-                                                                            preprocess_fn(preprocess, name_of_company),
+                                                                            name_of_company,
                                                                             distance=distance, thrsh=threshold)
 
         if res_clus:
@@ -89,13 +89,16 @@ def main(implemntation: str = 'USE', preprocess: str = 'lower_clean', mean_type:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process inputs.')
-    parser.add_argument('-i', '--implementation', type=str,
+    parser.add_argument('-i', '--implementation', type=str, choices=['USE'],
                         help='What implementation of embedding to use', default='USE')
     parser.add_argument('-p', '--preprocess', help='What kind of preprocess to use', type=str,
+                        choices=["lower_clean", "lower", "none"],
                         default='lower_clean')
     parser.add_argument('-d', '--distance', help='What kind of distance between embeddings to use', type=str,
+                        choices=["l1", "l2"],
                         default='l1')
     parser.add_argument('-m', '--mean_type', help='What kind of meaning to use in clusters', type=str,
+                        choices=["median", "mean"],
                         default='median')
     parser.add_argument('-t', '--threshold', type=float,
                         help='What kind of threshold to use in the way to make a choice about name matching',
