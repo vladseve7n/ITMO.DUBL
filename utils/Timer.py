@@ -5,6 +5,7 @@ class Timer:
     """
     Class for tracking the time
     """
+
     def __init__(self):
         self.timer = {0: 0.0}
 

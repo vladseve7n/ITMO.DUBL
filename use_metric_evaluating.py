@@ -1,10 +1,13 @@
+from copy import deepcopy
+
 import numpy as np
 import pandas as pd
 import requests
 from sklearn.metrics import f1_score, accuracy_score
+
 from utils.USEImplement import USE
 from utils.tools import preprocess_fn
-from copy import deepcopy
+
 implementations = {
     'USE': USE
 }
